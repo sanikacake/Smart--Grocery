@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Smart Grocery List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <h2>Smart Grocery</h2>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<!-- Dashboard Content -->
+<div class="dashboard-container">
+
+    <div class="welcome-section">
+        <h1>Welcome</h1>
+        <p>Manage your groceries efficiently</p>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats">
+        <div class="card stat-card">
+            <h3>Total Items</h3>
+            <p id="totalCount">0</p>
+        </div>
+
+        <div class="card stat-card">
+            <h3>Completed</h3>
+            <p id="completedCount">0</p>
+        </div>
+
+        <div class="card stat-card">
+            <h3>Pending</h3>
+            <p id="pendingCount">0</p>
+        </div>
+    </div>
+
+    <!-- Add Item Section -->
+    <div class="card add-section">
+        <input type="text" id="itemInput" placeholder="Enter grocery item">
+        <button onclick="addItem()">Add Item</button>
+    </div>
+
+    <!-- Grocery List -->
+    <div class="card">
+        <ul id="groceryList"></ul>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
