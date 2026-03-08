@@ -1,13 +1,13 @@
 const express = require("express");
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const cors = require("cors");
-
 const path = require("path");
-app.use(express.static(path.join(__dirname, "public")));
 
-const app = express();
+const app = express();   // ✅ create app FIRST
+
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
 
 const uri = "mongodb+srv://groceryadmin:grocery123@cluster0.lrmkhep.mongodb.net/?retryWrites=true&w=majority";
 
@@ -19,7 +19,7 @@ const client = new MongoClient(uri, {
   },
 });
 
-let products; // global collection
+let products;
 
 async function connectDB() {
   try {
@@ -50,8 +50,6 @@ app.get("/products", async (req, res) => {
   }
 });
 
-const { ObjectId } = require("mongodb");
-
 app.delete("/products/:id", async (req, res) => {
   const id = req.params.id;
 
@@ -60,7 +58,7 @@ app.delete("/products/:id", async (req, res) => {
   });
 
   res.send(result);
-}); 
+});
 
 app.post("/products", async (req, res) => {
   try {
@@ -73,6 +71,8 @@ app.post("/products", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log("Server running on port " + PORT);
 });
