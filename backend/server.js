@@ -45,7 +45,7 @@ app.get("/products", async (req, res) => {
     const data = await products.find().toArray();
     res.send(data);
   } catch (error) {
-    console.error(error);
+    console.log(error);
     res.status(500).send("Error fetching products");
   }
 });
@@ -63,7 +63,7 @@ app.delete("/products/:id", async (req, res) => {
 app.post("/products", async (req, res) => {
   try {
     const newProduct = req.body;
-    const result = await products.insertOne(newProduct);
+    const result = await products.save(newProduct);
     res.send(result);
   } catch (error) {
     console.error(error);
