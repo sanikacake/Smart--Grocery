@@ -50,7 +50,7 @@ async function addItem() {
         return;
     }
 
-    await fetch("http://localhost:5000/products", {
+    await fetch("https://smart-grocery-w15u.onrender.com", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
