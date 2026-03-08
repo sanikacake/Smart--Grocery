@@ -14,7 +14,7 @@ let total = 0;
 let completed = 0;
 
 async function loadItems() {
-    const res = await fetch("http://localhost:5000/products");
+    const res = await fetch("https://smart-grocery-w15u.onrender.com/products");
     const data = await res.json();
 
     const list = document.getElementById("groceryList");
@@ -50,7 +50,7 @@ async function addItem() {
         return;
     }
 
-    await fetch("https://smart-grocery-w15u.onrender.com", {
+    await fetch("https://smart-grocery-w15u.onrender.com/products", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -80,7 +80,7 @@ function toggleComplete(checkbox) {
 }
 
 async function deleteItem(button, id) {
-    await fetch(`http://localhost:5000/products/${id}`, {
+    await fetch(`https://smart-grocery-w15u.onrender.com/products/${id}`, {
         method: "DELETE"
     });
 
