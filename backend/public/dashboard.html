@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<<!DOCTYPE html> 
 <html>
 <head>
     <title>Dashboard - Smart Grocery List</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
@@ -38,10 +38,26 @@
         </div>
     </div>
 
+    <!-- Shopping Mode Button -->
+    <button onclick="toggleShoppingMode()" id="modeBtn" class="mode-btn">
+        🛒 Shopping Mode OFF
+    </button>
+
     <!-- Add Item Section -->
-    <div class="card add-section">
+    <div class="card add-section" style="position: relative;">
+        
         <input type="text" id="itemInput" placeholder="Enter grocery item">
+
+        <select id="priority">
+            <option value="High">🔴 High</option>
+            <option value="Medium">🟡 Medium</option>
+            <option value="Low">🟢 Low</option>
+        </select>
+
         <button onclick="addItem()">Add Item</button>
+
+        <!-- Suggestions dropdown -->
+        <ul id="suggestions"></ul>
     </div>
 
     <!-- Grocery List -->
@@ -51,6 +67,7 @@
 
 </div>
 
-<script src="script.js"></script>
+<script src="./script.js"></script>
+
 </body>
 </html>
