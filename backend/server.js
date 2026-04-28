@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-const uri = "mongodb+srv://groceryadmin:grocery123@cluster0.lrmkhep.mongodb.net/?appName=Cluster0";
+const uri = "mongodb+srv://groceryadmin:grocery123@cluster0.lrmkhep.mongodb.net/groceryDB?retryWrites=true&w=majority";
 
 const client = new MongoClient(uri, {
   serverApi: {
