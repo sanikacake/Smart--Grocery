@@ -4,7 +4,7 @@ let shoppingMode = false;
 let total = 0;
 let completed = 0;
 
-// CATEGORY MAP (for shopping mode)
+// CATEGORY MAP (updated with your requirement)
 const categoryMap = {
     milk: "Dairy",
     cheese: "Dairy",
@@ -16,9 +16,14 @@ const categoryMap = {
     tomato: "Vegetables",
     onion: "Vegetables",
     potato: "Vegetables",
+    spinach: "Vegetables",
+    cauliflower: "Vegetables",
 
     chicken: "Meat",
-    fish: "Meat"
+    fish: "Meat",
+
+    biscuit: "Snacks",
+    chips: "Snacks"
 };
 
 const order = {
@@ -35,7 +40,6 @@ function login() {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
 
-    // Allowed credentials
     const validEmail = "admin@gmail.com";
     const validPassword = "1234";
 
@@ -50,6 +54,7 @@ function login() {
         alert("Invalid Email or Password");
     }
 }
+
 // TOGGLE SHOPPING MODE
 function toggleShoppingMode() {
     shoppingMode = !shoppingMode;
@@ -65,7 +70,7 @@ function toggleShoppingMode() {
 
 // LOAD ITEMS
 async function loadItems() {
-    const res = await fetch("http://localhost:5000/products");
+    const res = await fetch("/products");   // ✅ FIXED
     let data = await res.json();
 
     const list = document.getElementById("groceryList");
@@ -74,7 +79,6 @@ async function loadItems() {
     total = 0;
     completed = 0;
 
-    // assign category (fixed syntax)
     data.forEach(item => {
         let name = item.name.toLowerCase().trim();
 
@@ -85,7 +89,6 @@ async function loadItems() {
         item.category = foundKey ? categoryMap[foundKey] : "Others";
     });
 
-    // sort when shopping mode ON
     if (shoppingMode) {
         data.sort((a, b) => order[a.category] - order[b.category]);
     }
@@ -130,7 +133,7 @@ async function addItem() {
         return;
     }
 
-    await fetch("http://localhost:5000/products", {
+    await fetch("/products", {   // ✅ FIXED
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -162,7 +165,7 @@ function toggleComplete(checkbox) {
 
 // DELETE ITEM
 async function deleteItem(id) {
-    await fetch(`http://localhost:5000/products/${id}`, {
+    await fetch(`/products/${id}`, {   // ✅ FIXED
         method: "DELETE"
     });
 
